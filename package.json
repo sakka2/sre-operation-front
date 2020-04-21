@@ -4,6 +4,7 @@
   "description": "frontend of operation time",
   "main": "webpack.config.js",
   "scripts": {
+    "start": "webpack-dev-server --content-base src --mode development --inline",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

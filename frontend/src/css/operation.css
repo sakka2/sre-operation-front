@@ -1,0 +1,144 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500&display=swap');
+
+/* Operation */
+section.sre-metrics {
+    padding: 20px;
+    font-weight: bold;
+    display: flex; flex-flow: column; justify-content: flex-start; align-items: center;
+}
+section.sre-metrics > div > h1 {
+    display: inline-block;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+section.sre-metrics > div > h1:hover {
+    color: coral;
+    transition: 0.3s;
+}
+section.sre-metrics > div > img {
+    display: inline-block;
+    width: 18px;
+    margin: 0 10px;
+}
+section.sre-metrics > div > a {
+    color: coral;
+    font-size: 14px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+section.sre-metrics > div > a:hover {
+    color: cadetblue;
+    transition: 0.3s;
+}
+section.sre-metrics > p {
+    font-size: 16px;
+}
+section.sre-metrics > p > a {
+    padding: 0 20px;
+    color: cadetblue;
+    text-decoration: none;
+}
+section.sre-metrics > p > a:hover {
+    color: coral;
+    transition: 0.3s;
+}
+section.sre-metrics div.metrics-wrap {
+    padding: 15px;
+    max-width: 822px;
+    display: flex; flex-flow: row wrap; justify-content: left; align-items: center; align-content: space-between;
+}
+section.sre-metrics div.metric {
+    background-color: #f0f8ff;
+    border-radius: 3px;
+    box-shadow: 1px 1px 5px 0px #999;
+    margin: 7px;
+    padding: 10px;
+    width: 250px;
+    height: auto;
+    min-height: 200px;
+    position: relative;
+    display: flex; flex-flow: column; justify-content: center; align-items: center;
+}
+section.sre-metrics div.metric:hover {
+    color: coral;
+    transition: 0.3s;
+}
+section.sre-metrics div.metric > a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+section.sre-metrics div.metric > H3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+section.sre-metrics div.metric > H2 {
+    font-size: 50px;
+    font-weight: bold;
+}
+section.sre-metrics div.metric > H2 > span {
+    font-size: 28px;
+}
+section.sre-metrics div.metric > p {
+    font-size: 20px;
+}
+section.sre-metrics div.metric > p > span {
+    font-size: 14px;
+}
+section.sre-metrics div.warn {
+    background-color: #fffacd;
+}
+section.sre-metrics div.caution {
+    background-color: #ffc0cb;
+}
+section.sre-metrics div.danger {
+    background-color: #dc143c;
+}
+
+/* operation detail */
+section.sre-metrics div.modal-content > H4 {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
+section.sre-metrics div.modal-content > ul {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+section.sre-metrics div.modal-content > ul > li > span {
+    margin-left: 30px;
+}
+
+
+@media screen and (max-width:861px) {
+
+/* Operation */
+section.sre-metrics div.metrics-wrap {
+    padding: 15px;
+    max-width: 558px;
+}
+
+
+}
+
+
+@media screen and (max-width:597px) {
+
+/* Operation */
+section.sre-metrics div.metrics-wrap {
+    padding: 15px;
+    max-width: 291px;
+}
+section.sre-metrics > p > a {
+    display: block;
+    text-align: center;
+}
+
+
+}

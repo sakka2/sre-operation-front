@@ -4,7 +4,8 @@ const apiHost = process.env.API_SERVER_HOST
 const apiPort = process.env.API_SERVER_PORT
 const apiVersion = process.env.API_VERSION
 //const baseUrl = `${apiHost}:${apiPort}/${apiVersion}`
-const baseUrl = 'http://172.17.209.224:8080/v1'
+//const baseUrl = 'http://172.17.209.224:8080/v1'
+const baseUrl = 'http://localhost:8080/v1'
 
 const getSprints = async (sprint: string) => {
   sprint = sprint === 'today' ? '' : sprint

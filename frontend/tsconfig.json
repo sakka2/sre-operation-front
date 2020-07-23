@@ -1,28 +1,18 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
+    "module": "es2015",
+    "types": ["node"],
+    "lib": ["es2019", "dom"],
+    "allowJs": true, // jsコンパイル用
+    "checkJs": true, // js簡易型チェック
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "inlineSources": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "jsx": "react",
     "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react"
-  },
-  "include": [
-    "src/**.ts", "src/lib/api.ts"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "moduleResolution": "node"
+  }
 }

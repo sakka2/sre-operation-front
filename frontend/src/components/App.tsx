@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import logo from './images/logo.png'
-import User from './components/User'
-import { getSprints, getUsers, getOperations } from './lib/api'
+import User from './User'
+import { getSprints, getUsers, getOperations } from '../lib/api'
 
 const App = () => {
   const [targetSprint, setSprint] = useState('today')
@@ -84,7 +83,6 @@ const App = () => {
     <>
       <section className="sre-metrics">
         <div>
-          <img src={logo} />
           <h1 onClick={() => window.location.reload()}>運用時間集計</h1>
           <a href="#" onClick={() => toggleTarget()}>
             {isWeekly() ? '月次を表示' : '週次を表示'}
@@ -109,8 +107,9 @@ const App = () => {
               const userOperation = operations.filter(
                 (operation) => operation.user_id === user.user_id,
               )
-              if (userOperation.length)
+              if (userOperation.length) {
                 prev.push(<User key={user.user_id} operations={userOperation} user={user} />)
+              }
               return prev
             }, [])}
           {operations && !operations.length && <p> No data found </p>}

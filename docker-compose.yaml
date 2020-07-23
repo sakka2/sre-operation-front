@@ -1,12 +1,11 @@
 version: "3.3"
 services:
-
   frontend:
     container_name: operation_front
     build:
       context: .
       dockerfile: Dockerfile
-    volumes: 
+    volumes:
       - ./frontend:/frontend
     working_dir: /frontend
     command:

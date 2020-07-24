@@ -58,7 +58,10 @@ module.exports = (env) => {
     ],
 
     // 開発モード設定
-    devtool: 'source-map',
+    // source-mapの出力先を書かないで済む
+    // ビルドしたjavascriptにsource-mapも書き出す
+    // ブラウザでのデバッグ用
+    devtool: 'inline-source-map',
     devServer: {
       contentBase: './dist',
       host: '0.0.0.0',

@@ -1,0 +1,23 @@
+version: "3.3"
+services:
+  frontend:
+    container_name: operation_front
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend:/frontend
+    working_dir: /frontend
+    command:
+      - /bin/sh
+      - -c
+      - |
+        yarn upgrade
+        yarn start
+    ports:
+      - 3000:3000
+    environment:
+      - TZ=${TZ}
+      - API_SERVER_HOST=${API_SERVER_HOST}
+      - API_SERVER_PORT=${API_SERVER_PORT}
+      - API_VERSION=${API_VERSION}

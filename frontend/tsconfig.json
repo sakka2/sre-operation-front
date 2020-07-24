@@ -1,0 +1,87 @@
+{
+  "compilerOptions": {
+    /* 基本オプション */
+    // 出力するjsのバージョン 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019'
+    "target": "es5",
+    // コンパイルする際に使用する組み込みライブラリを指定する。
+    // libを指定しない場合は`target`で設定したjsのバージョンに含まれているものは暗黙的に指定される
+    //   targetがES5 -> dom、es5、ScriptHost
+    //   targetがES6 -> dom、es6、dom.iterable、ScriptHost
+    // libを指定する場合は暗黙的な指定はなくなるので明示的に指定する
+    // 例えば、promiseを使いたい場合はtargetを`es6`にする必要があるが、古いブラウザなどでは使えなくなる。
+    // その場合はlibにes6を指定すると使えるようになる
+    // 例えば、es6の Map/Set アロー関数などを使いたいときはes6、さらにsymbolを使いたいなら es2015.symbol
+    // dom, dom.iterableはブラウザでのdom操作用
+    // dom.iterable はおそらく childNodes のようなdomコレクションに必要
+    // dom は https://ja.javascript.info/dom-navigation がわかりやすい
+    "lib": ["es6", "dom", "dom.iterable", "es2015.symbol"],
+    // 出力するjsのモジュールの仕組み（commonjs, es2015など）
+    "module": "es2015",
+    // 不明。。
+    "types": ["node"],
+
+    /* jsxオプション */
+    // tsxファイルのjsxコード生成を指定する
+    // preserve ... jsxをそのまま出力（拡張子は.jsx） => babelなど他のトランスコンパイラを使いたい時
+    // react ... `React.createElement` を出力するので他のツールでの変換が不要（拡張子は.js）
+    // react-native ... preservと同様にjsxをそのまま出力するが、拡張子は.jsになる
+    "jsx": "react",
+
+    /* 出力先オプション */
+    // .tsファイルが置いてあるディレクトリの構造をそのままに指定したディレクトリ以下にjsファイルを作る
+    "outDir": "./dist/",
+
+    /* js周りのオプション */
+    // .js, .jsxもコンパイル対象に含めるかどうか。部分的にjsを使用している場合はtrueにする
+    "allowJs": true,
+    // allowJs=trueの場合に、型のチェックだけはしてくれる
+    // 実際にエラーにはしないけどメッセージは出してくれる
+    "checkJs": true,
+
+    /* ソースマップオプション */
+    // 変換前と変換後のファイルの関連付けをするファイル（例：index.ts -> index.js <> index.js.map）
+    // 変換時にminifyされてしまうため、ブラウザ上などでデバックをしたい場合などに必要（minify前の状態でデバッグできる）
+    // デバッガ用
+    "sourceMap": true,
+    // ソースをその内部のソースマップと一緒に出力します
+    "inlineSources": true,
+    // ソースマップを単一ファイルとして出力するかどうか sourceMapと同時には使えない
+    // "inlineSourceMap": true,
+
+    /* 厳密な型チェックオプション */
+    // すべての厳密な型チェックオプションを有効
+    "strict": true,
+    // 暗黙の'any'型で式と宣言のエラーを発生させるかどうか
+    "noImplicitAny": false,
+    // 厳密なnullチェックを有効にするかどうか
+    "strictNullChecks": true,
+    // 関数型の厳密なチェックを有効にするかどうか
+    "strictFunctionTypes": true,
+    // 各ソースファイルに対して"use strict"をつける
+    "alwaysStrict": true,
+    // 型定義ファイル（*.d.ts）の型チェックをスキップする
+    "skipLibCheck": true,
+    // 型定義ファイル（*.d.ts）を自動生成してくれる
+    // exportしているものがあるtsファイルが対象、exportが一つもないファイルの場合は空ファイルが作成される
+    "declaration": true,
+    // エディタで定義元にジャンプ（cmd + clickなど）した際に、型定義ファイルではなく実際のtsコードに飛ぶことができる
+    "declarationMap": true,
+
+    /* モジュール解決オプション*/
+    // モジュール解決戦略を指定する: "node"（Node.js）または "classic"
+    // ここは普通に"node"で良さそう
+    "moduleResolution": "node",
+    // defaultのエクスポートがないモジュールからのdefaultのインポートを許可します
+    "allowSyntheticDefaultImports": true,
+    // CommonJSモジュールとESモジュール間の相互運用性を,すべてのインポート用に名前空間オブジェクトを作成することで可能にする。
+    // https://qiita.com/karak/items/29ff148788f5abb15331
+    "esModuleInterop": true,
+    // 自分で型定義をする必要がなく、JSONファイルが使える
+    // https://qiita.com/MasanobuAkiba/items/98a678430fa192c0f8c5
+    "resolveJsonModule": true
+    // "baseUrl": "./", // 非絶対モジュール名を解決するためのベースディレクトリ
+    // "paths": {},     // 'baseUrl'に相対的な参照位置にインポートを再マップする一連のエントリ
+  },
+  // コンパイルする対象ファイルを記述(**/は再帰)
+  "include": ["src/**/*"]
+}

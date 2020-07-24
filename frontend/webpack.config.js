@@ -1,20 +1,17 @@
 const path = require('path')
-const webpack = require('webpack');
+const webpack = require('webpack')
 
 module.exports = (env) => {
-  const environmentConfig = require(`./config/env/${env.mode}.js`);
+  const environmentConfig = require(`./config/env/${env.mode}.js`)
 
   return {
-
-    // モードを開発モードにする
+    // envファイルによってdevelopment, production等に分ける
     mode: env.mode,
-    // 入力ファイル設定
+
+    // 入出力ファイル設定
     entry: [path.resolve(__dirname, './src/index.tsx')],
-    // 出力ファイル設定
     output: {
-      // 出力されるファイル名
       filename: 'bundle.js',
-      // 出力先ディレクトリ
       path: path.resolve(__dirname, 'dist'),
     },
 
@@ -43,16 +40,18 @@ module.exports = (env) => {
             },
             // 'postcss-loader', 'sass-loader'
           ],
-          exclude: /node_modules/,
         },
       ],
     },
+
     // モジュール解決
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.json'],
     },
 
+    // プラグイン設定
     plugins: [
+      // configファイルのprocess.env.xxxを設定
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(environmentConfig),
       }),

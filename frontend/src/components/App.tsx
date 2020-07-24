@@ -2,16 +2,16 @@ import React, { useEffect, useState } from 'react'
 import User from './User'
 import { getSprints, getUsers, getOperations } from '../lib/api'
 
-const App = () => {
+const App: React.FC = () => {
   const [targetSprint, setSprint] = useState('today')
-  const [targetMonth, setMonth] = useState(null)
-  const [users, setUsers] = useState(null)
-  const [sprints, setSprints] = useState(null)
-  const [operations, setOperations] = useState(null)
+  const [targetMonth, setMonth] = useState('')
+  const [users, setUsers] = useState<any[]>([])
+  const [sprints, setSprints] = useState({ startDate: String, endDate: String })
+  const [operations, setOperations] = useState<any[]>([])
 
   useEffect(() => {
     const asyncUsers = async () => {
-      const users = await getUsers(null)
+      const users = await getUsers('')
       setUsers(users)
     }
     asyncUsers()
@@ -71,11 +71,11 @@ const App = () => {
   const toggleTarget = () => {
     const d = new Date()
     if (!isWeekly()) {
-      setMonth(null)
+      setMonth('')
       setSprint(formatDate(d))
     } else {
       setMonth(formatDate(d).split('-', 2).join('-'))
-      setSprint(null)
+      setSprint('')
     }
   }
 

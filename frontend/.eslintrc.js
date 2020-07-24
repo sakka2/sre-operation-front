@@ -1,34 +1,62 @@
 module.exports = {
-    env: {
-        browser: true,
-        es6: true,
-        node: true,
+  env: {
+    browser: true,
+    es6: true,
+    node: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+    'prettier/react',
+  ],
+  globals: {
+    Atomics: 'readonly',
+    SharedArrayBuffer: 'readonly',
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    extends: [
-        'standard',
-        'plugin:react/recommended',
-        'plugin:prettier/recommended',
-        'prettier/@typescript-eslint',
+    ecmaVersion: 2015,
+    sourceType: 'module',
+  },
+  plugins: ['react', '@typescript-eslint', 'prettier'],
+  rules: {
+    'prettier/prettier': [
+      'error',
+      {
+        printWidth: 100,
+        tabWidth: 2,
+        useTabs: false,
+        semi: false,
+        singleQuote: true,
+        trailingComma: 'all',
+        bracketSpacing: true,
+        arrowParens: 'always',
+      },
     ],
-    globals: {
-        Atomics: 'readonly',
-        SharedArrayBuffer: 'readonly',
+    'react/jsx-filename-extension': ['off'],
+    'react/prop-types': ['off'],
+    'no-return-assign': ['off'],
+    // jsファイルがある場合は一度rulesを全てoffにして、overridesでtypespcriptへのルールを再設定
+    '@typescript-eslint/no-var-requires': ['off'],
+  },
+  overrides: [
+    {
+      // TypeScript系ファイルへのルールを設定
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/no-var-requires': ['error'],
+      },
     },
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-        ecmaFeatures: {
-            jsx: true,
-        },
-        ecmaVersion: 2018,
-        sourceType: 'module',
+  ],
+  settings: {
+    react: {
+      version: 'detect',
     },
-    plugins: ['react', '@typescript-eslint', 'prettier'],
-    rules: {
-        'prettier/prettier': 'error',
-    },
-    settings: {
-        react: {
-            version: 'detect',
-        },
-    },
+  },
 }

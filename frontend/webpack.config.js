@@ -5,27 +5,22 @@ module.exports = (env) => {
   const environmentConfig = require(`./config/env/${env.mode}.js`)
 
   return {
-    // envファイルによってdevelopment, production等に分ける
     mode: env.mode,
 
-    // 入出力ファイル設定
     entry: [path.resolve(__dirname, './src/index.tsx')],
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
 
-    // モジュール設定
     module: {
       rules: [
         {
-          // ts-loaderの設定
-          test: /\.(js|ts|tsx)?$/,
+          test: /\.(js|ts|tsx|jsx)?$/,
           use: 'ts-loader',
           exclude: /node_modules/,
         },
         {
-          // css-loaderの設定
           test: /\.(css|scss)?$/,
           use: [
             { loader: 'style-loader' },
@@ -44,23 +39,20 @@ module.exports = (env) => {
       ],
     },
 
-    // モジュール解決
     resolve: {
-      extensions: ['.ts', '.tsx', '.js', '.json'],
+      extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
+      alias: {
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@lib': path.resolve(__dirname, 'src/lib'),
+      },
     },
 
-    // プラグイン設定
     plugins: [
-      // configファイルのprocess.env.xxxを設定
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(environmentConfig),
       }),
     ],
 
-    // 開発モード設定
-    // source-mapの出力先を書かないで済む
-    // ビルドしたjavascriptにsource-mapも書き出す
-    // ブラウザでのデバッグ用
     devtool: 'inline-source-map',
     devServer: {
       contentBase: './dist',

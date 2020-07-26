@@ -44,6 +44,7 @@ module.exports = {
     'no-return-assign': ['off'],
     // jsファイルがある場合は一度rulesを全てoffにして、overridesでtypespcriptへのルールを再設定
     '@typescript-eslint/no-var-requires': ['off'],
+    '@typescript-eslint/explicit-module-boundary-types': ['off'],
   },
   overrides: [
     {
@@ -51,6 +52,7 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/no-var-requires': ['error'],
+        '@typescript-eslint/explicit-module-boundary-types': ['error'],
       },
     },
   ],

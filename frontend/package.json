@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --env.mode=development",
     "build": "webpack",
-    "build-prod": "webpack --mode=production",
+    "build-prod": "webpack --env.mode=production",
     "lint": "eslint --fix src/**/*.ts*"
   },
   "dependencies": {

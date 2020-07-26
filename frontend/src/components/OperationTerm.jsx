@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import User from './User'
-import { getSprints, getUsers, getOperations } from '../lib/api'
+import OperationList from './OperationList'
+import { getSprints, getOperations } from '../lib/api'
 
-const App = () => {
-  const [targetSprint, setSprint] = useState('')
+const OperationTerm = () => {
+  const [targetSprint, setSprint] = useState('today')
   const [targetMonth, setMonth] = useState('')
   const [sprints, setSprints] = useState({})
-  const [users, setUsers] = useState([])
   const [operations, setOperations] = useState([])
 
   useEffect(() => {
@@ -22,13 +21,6 @@ const App = () => {
     })()
   }, [targetSprint, targetMonth])
 
-  useEffect(() => {
-    ;(async () => {
-      const users = await getUsers('')
-      setUsers(users)
-    })()
-  }, [])
-
   const isWeekly = () => !targetMonth
 
   const formatDate = (date) => {
@@ -43,7 +35,7 @@ const App = () => {
     isWeekly() ? setWeeklyTarget(direction) : setMonthlyTarget(direction)
 
   const setWeeklyTarget = (direction) => {
-    const d = !targetSprint ? new Date() : new Date(targetSprint)
+    const d = targetSprint === 'today' ? new Date() : new Date(targetSprint)
 
     if (direction === 'prev') {
       d.setDate(d.getDate() - 7)
@@ -90,7 +82,7 @@ const App = () => {
           <a href="#" onClick={() => setTarget('prev')}>
             &lt;&lt; Prev
           </a>
-          {sprints &&
+          {Object.keys(sprints).length !== 0 &&
             (isWeekly()
               ? `${sprints.startDate} (水) - ${sprints.endDate} (火)`
               : `${targetMonth}月`)}
@@ -98,23 +90,14 @@ const App = () => {
             Next &gt;&gt;
           </a>
         </p>
-        <div className="metrics-wrap">
-          {operations &&
-            users &&
-            users.reduce((prev, user) => {
-              const userOperation = operations.filter(
-                (operation) => operation.user_id === user.user_id,
-              )
-              if (userOperation.length) {
-                prev.push(<User key={user.user_id} operations={userOperation} user={user} />)
-              }
-              return prev
-            }, [])}
-          {operations && !operations.length && <p> No data found </p>}
-        </div>
+        {operations.length === 0 ? (
+          <p>No data was found in this term.</p>
+        ) : (
+          <OperationList operations={operations} />
+        )}
       </section>
     </>
   )
 }
 
-export default App
+export default OperationTerm

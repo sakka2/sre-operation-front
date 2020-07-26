@@ -4,7 +4,7 @@
     "target": "es5",
     "lib": ["es6", "dom", "dom.iterable", "es2015.symbol"],
     "module": "es2015",
-    "types": ["react"],
+    "types": ["react", "node"],
 
     /* jsxオプション */
     "jsx": "react",

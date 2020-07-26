@@ -7,7 +7,7 @@ import './assets/css/modal.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <OperationTerm />
   </React.StrictMode>,
   document.getElementById('root'),
 )

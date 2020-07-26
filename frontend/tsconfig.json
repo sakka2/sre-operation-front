@@ -4,7 +4,7 @@
     "target": "es5",
     "lib": ["es6", "dom", "dom.iterable", "es2015.symbol"],
     "module": "es2015",
-    "types": ["node"],
+    "types": ["react"],
 
     /* jsxオプション */
     "jsx": "react",
@@ -40,5 +40,8 @@
     // "paths": {},     // 'baseUrl'に相対的な参照位置にインポートを再マップする一連のエントリ
   },
   // コンパイルする対象ファイルを記述
-  "include": ["src/**/*"]
+  "include": ["src/**/*"],
+  "exclude": [
+    "node_modules"
+  ],
 }

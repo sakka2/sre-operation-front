@@ -6,7 +6,6 @@ const apiVersion = process.env.API_VERSION
 const baseUrl = `${apiHost}:${apiPort}/${apiVersion}`
 
 const getSprints: any = async (sprint: string) => {
-  sprint = sprint === 'today' ? '' : sprint
   const { data } = await axios
     .get(`${baseUrl}/getSprints`, {
       params: {
@@ -48,7 +47,7 @@ const getOperations: any = async (args: OperationArgs) => {
     .get(`${baseUrl}/getOperations`, {
       params: {
         ...(args.userId ? { user_id: args.userId } : {}),
-        ...(args.sprint ? { sprint: args.sprint } : {}),
+        ...(args.sprint ? { sprint: args.sprint } : { sprint: 'today' }),
         ...(args.month ? { month: args.month } : {}),
       },
     })

@@ -1,11 +1,6 @@
 import React, { useCallback } from 'react'
 
-type User = {
-  operations
-  user
-}
-
-const User: React.FC<User> = ({ operations, user }) => {
+const User = ({ operations, user }) => {
   const totalOperationHours = operations.reduce((prev, x) => prev + x.operation_time, 0)
   const totalWorkingHours = operations.reduce((prev) => prev + 8, 0)
   const percentage = Math.round((totalOperationHours / totalWorkingHours) * 100 * 10) / 10
@@ -17,7 +12,7 @@ const User: React.FC<User> = ({ operations, user }) => {
     return ''
   }, [percentage])
 
-  const getDay = (date: string) => {
+  const getDay = (date) => {
     const d = new Date(date)
     return ['日', '月', '火', '水', '木', '金', '土'][d.getDay()]
   }

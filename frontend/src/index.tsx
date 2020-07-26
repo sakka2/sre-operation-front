@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/App'
-import './css/reset.css'
-import './css/operation.css'
-import './css/modal.css'
+import App from './components/Users'
+import './assets/css/reset.css'
+import './assets/css/operation.css'
+import './assets/css/modal.css'
 
 ReactDOM.render(
   <React.StrictMode>

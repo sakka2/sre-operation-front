@@ -2,35 +2,32 @@ import React, { useEffect, useState } from 'react'
 import User from './User'
 import { getSprints, getUsers, getOperations } from '../lib/api'
 
-const App: React.FC = () => {
-  const [targetSprint, setSprint] = useState('today')
+const App = () => {
+  const [targetSprint, setSprint] = useState('')
   const [targetMonth, setMonth] = useState('')
-  const [users, setUsers] = useState<any[]>([])
-  const [sprints, setSprints] = useState({ startDate: String, endDate: String })
-  const [operations, setOperations] = useState<any[]>([])
+  const [sprints, setSprints] = useState({})
+  const [users, setUsers] = useState([])
+  const [operations, setOperations] = useState([])
 
   useEffect(() => {
-    const asyncUsers = async () => {
-      const users = await getUsers('')
-      setUsers(users)
-    }
-    asyncUsers()
-
-    const asyncSprints = async () => {
+    ;(async () => {
       const sprints = await getSprints(targetSprint)
       setSprints(sprints)
-    }
-    asyncSprints()
 
-    const asyncOperation = async () => {
       const operations = await getOperations({
         ...(targetSprint ? { sprint: targetSprint } : {}),
         ...(targetMonth ? { month: targetMonth } : {}),
       })
       setOperations(operations)
-    }
-    asyncOperation()
+    })()
   }, [targetSprint, targetMonth])
+
+  useEffect(() => {
+    ;(async () => {
+      const users = await getUsers('')
+      setUsers(users)
+    })()
+  }, [])
 
   const isWeekly = () => !targetMonth
 
@@ -42,30 +39,31 @@ const App: React.FC = () => {
     return `${year}-${month}-${day}`
   }
 
-  const setTarget = (direction) => {
-    if (isWeekly()) {
-      const d = targetSprint === 'today' ? new Date() : new Date(targetSprint)
+  const setTarget = (direction) =>
+    isWeekly() ? setWeeklyTarget(direction) : setMonthlyTarget(direction)
 
-      if (direction === 'prev') {
-        d.setDate(d.getDate() - 7)
-      }
-      if (direction === 'next') {
-        d.setDate(d.getDate() + 7)
-      }
-      setSprint(formatDate(d))
+  const setWeeklyTarget = (direction) => {
+    const d = !targetSprint ? new Date() : new Date(targetSprint)
+
+    if (direction === 'prev') {
+      d.setDate(d.getDate() - 7)
     }
-
-    if (!isWeekly()) {
-      const d = new Date(targetMonth)
-
-      if (direction === 'prev') {
-        d.setMonth(d.getMonth() - 1)
-      }
-      if (direction === 'next') {
-        d.setMonth(d.getMonth() + 1)
-      }
-      setMonth(formatDate(d).split('-', 2).join('-'))
+    if (direction === 'next') {
+      d.setDate(d.getDate() + 7)
     }
+    setSprint(formatDate(d))
+  }
+
+  const setMonthlyTarget = (direction) => {
+    const d = new Date(targetMonth)
+
+    if (direction === 'prev') {
+      d.setMonth(d.getMonth() - 1)
+    }
+    if (direction === 'next') {
+      d.setMonth(d.getMonth() + 1)
+    }
+    setMonth(formatDate(d).split('-', 2).join('-'))
   }
 
   const toggleTarget = () => {

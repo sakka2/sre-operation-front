@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './components/Users'
+import OperationTerm from './components/OperationTerm'
 import './assets/css/reset.css'
 import './assets/css/operation.css'
 import './assets/css/modal.css'

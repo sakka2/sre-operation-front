@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import OperationList from './OperationList'
 import { getSprints, getOperations } from '../lib/api'
+import logo from '../images/logo.png'
 
 const OperationTerm = () => {
   const [targetSprint, setSprint] = useState('today')
@@ -73,6 +74,7 @@ const OperationTerm = () => {
     <>
       <section className="sre-metrics">
         <div>
+          <img src={logo} alt="logo" />
           <h1 onClick={() => window.location.reload()}>運用時間集計</h1>
           <a href="#" onClick={() => toggleTarget()}>
             {isWeekly() ? '月次を表示' : '週次を表示'}

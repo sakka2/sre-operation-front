@@ -37,6 +37,24 @@ module.exports = (env, { mode }) => {
             // 'postcss-loader', 'sass-loader'
           ],
         },
+        {
+          test: /\.(png|jpe?g|jpeg|gif)$/,
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                limit: 8192, // base64URLにする画像の大きさ
+                fallback: require.resolve('responsive-loader'),
+                adapter: require('responsive-loader/sharp'),
+                sizes: [300, 600, 1080, 1920],
+                placeholder: true, // Progressive Imageで使う縮小画像を生成するかどうかのフラグ
+                placeholderSize: 50, // 縮小画像のサイズ
+                outputPath: 'images/',
+                name: '[name]-[width].[ext]',
+              },
+            },
+          ],
+        },
       ],
     },
 

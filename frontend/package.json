@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --open --env.mode=development",
+    "start": "webpack-dev-server --open --mode=development --env.key=dev_key",
     "build": "webpack",
-    "build-prod": "webpack --env.mode=production",
+    "build-prod": "webpack --mode=production --env.key=prod_key",
     "lint": "eslint --fix src/**/*.ts*"
   },
   "dependencies": {

@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  frontend:
+  frontend_dev:
     container_name: operation_front
     build:
       context: .
@@ -21,3 +21,14 @@ services:
       - API_SERVER_HOST=${API_SERVER_HOST}
       - API_SERVER_PORT=${API_SERVER_PORT}
       - API_VERSION=${API_VERSION}
+
+  frontend_production:
+    container_name: operation_front_prod
+    image: nginx
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html
+    working_dir: /usr/share/nginx/html
+    ports:
+      - 3005:80
+    environment:
+      TZ: Asia/Tokyo

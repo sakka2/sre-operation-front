@@ -28,7 +28,7 @@ const OperationList = ({ operations }) => {
             }
             return prev
           }, [])}
-        {operations && !operations.length && <p> No data found </p>}
+        {!operations.length && <p> No data found </p>}
       </div>
     </>
   )

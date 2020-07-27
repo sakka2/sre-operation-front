@@ -1,11 +1,12 @@
 const path = require('path')
 const webpack = require('webpack')
 
-module.exports = (env) => {
-  const environmentConfig = require(`./config/env/${env.mode}.js`)
+module.exports = (env, { mode }) => {
+  const environmentConfig = require(`./config/env/${mode}.js`)
+  // console.log(env)
 
   return {
-    mode: env.mode,
+    mode: mode,
 
     entry: [path.resolve(__dirname, './src/index.tsx')],
     output: {

@@ -34,6 +34,7 @@ const getUsers: any = async (userId: string) => {
     .catch((err) => {
       return err.response
     })
+
   return data
 }
 
@@ -55,6 +56,7 @@ const getOperations: any = async (args: OperationArgs) => {
     .catch((err) => {
       return err.response
     })
+
   return data
 }
 

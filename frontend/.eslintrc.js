@@ -6,8 +6,8 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
     'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
@@ -21,34 +21,28 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2015,
+    ecmaVersion: 6,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint'],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        printWidth: 100,
-        tabWidth: 2,
-        useTabs: false,
-        semi: false,
-        singleQuote: true,
-        trailingComma: 'all',
-        bracketSpacing: true,
-        arrowParens: 'always',
-      },
-    ],
+    complexity: 'warn',
+    eqeqeq: ['error', 'always'],
+    'default-case': 'warn',
+    'no-implicit-coercion': ['error'],
+    'no-magic-numbers': ['error'],
+    'newline-after-var': ['error', 'always'],
+    'newline-before-return': 'error',
     'react/jsx-filename-extension': ['off'],
     'react/prop-types': ['off'],
     'no-return-assign': ['off'],
-    // jsファイルがある場合は一度rulesを全てoffにして、overridesでtypespcriptへのルールを再設定
+    // For Override
     '@typescript-eslint/no-var-requires': ['off'],
     '@typescript-eslint/explicit-module-boundary-types': ['off'],
   },
   overrides: [
     {
-      // TypeScript系ファイルへのルールを設定
+      // Only for typescripts
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/no-var-requires': ['error'],

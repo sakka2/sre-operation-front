@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import OperationList from './OperationList'
-import { getSprints, getOperations } from '../lib/api'
-import logo from '../images/logo.png'
+import { getSprints, getOperations } from '@src/lib/api'
+import logo from '../assets/images/logo.png'
 
 const OperationTerm = () => {
   const [targetSprint, setSprint] = useState('today')
@@ -12,12 +12,14 @@ const OperationTerm = () => {
   useEffect(() => {
     ;(async () => {
       const sprints = await getSprints(targetSprint)
+
       setSprints(sprints)
 
       const operations = await getOperations({
         ...(targetSprint ? { sprint: targetSprint } : {}),
         ...(targetMonth ? { month: targetMonth } : {}),
       })
+
       setOperations(operations)
     })()
   }, [targetSprint, targetMonth])
@@ -32,8 +34,7 @@ const OperationTerm = () => {
     return `${year}-${month}-${day}`
   }
 
-  const setTarget = (direction) =>
-    isWeekly() ? setWeeklyTarget(direction) : setMonthlyTarget(direction)
+  const setTarget = (direction) => (isWeekly() ? setWeeklyTarget(direction) : setMonthlyTarget(direction))
 
   const setWeeklyTarget = (direction) => {
     const d = targetSprint === 'today' ? new Date() : new Date(targetSprint)
@@ -61,6 +62,7 @@ const OperationTerm = () => {
 
   const toggleTarget = () => {
     const d = new Date()
+
     if (!isWeekly()) {
       setMonth('')
       setSprint(formatDate(d))
@@ -85,18 +87,12 @@ const OperationTerm = () => {
             &lt;&lt; Prev
           </a>
           {Object.keys(sprints).length !== 0 &&
-            (isWeekly()
-              ? `${sprints.startDate} (水) - ${sprints.endDate} (火)`
-              : `${targetMonth}月`)}
+            (isWeekly() ? `${sprints.startDate} (水) - ${sprints.endDate} (火)` : `${targetMonth}月`)}
           <a href="#" onClick={() => setTarget('next')}>
             Next &gt;&gt;
           </a>
         </p>
-        {operations.length === 0 ? (
-          <p>No data was found in this term.</p>
-        ) : (
-          <OperationList operations={operations} />
-        )}
+        {operations.length === 0 ? <p>No data was found in this term.</p> : <OperationList operations={operations} />}
       </section>
     </>
   )

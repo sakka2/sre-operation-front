@@ -10,6 +10,7 @@ const OperationSummary = ({ operations, user }) => {
     if (percentage > 50) return 'danger'
     if (percentage > 40) return 'caution'
     if (percentage > 30) return 'warn'
+
     return ''
   }, [percentage])
 

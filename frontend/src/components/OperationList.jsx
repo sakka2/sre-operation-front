@@ -8,6 +8,7 @@ const OperationList = ({ operations }) => {
   useEffect(() => {
     ;(async () => {
       const users = await getUsers('')
+
       setUsers(users)
     })()
   }, [])
@@ -18,14 +19,12 @@ const OperationList = ({ operations }) => {
         {operations.length !== 0 &&
           users.length !== 0 &&
           users.reduce((prev, user) => {
-            const userOperation = operations.filter(
-              (operation) => operation.user_id === user.user_id,
-            )
+            const userOperation = operations.filter((operation) => operation.user_id === user.user_id)
+
             if (userOperation.length) {
-              prev.push(
-                <OperationSummary key={user.user_id} operations={userOperation} user={user} />,
-              )
+              prev.push(<OperationSummary key={user.user_id} operations={userOperation} user={user} />)
             }
+
             return prev
           }, [])}
         {!operations.length && <p> No data found </p>}

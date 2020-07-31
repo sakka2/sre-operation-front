@@ -3,6 +3,7 @@ import React from 'react'
 const OperationDetail = ({ user, operations }) => {
   const getDay = (date) => {
     const d = new Date(date)
+
     return ['日', '月', '火', '水', '木', '金', '土'][d.getDay()]
   }
 

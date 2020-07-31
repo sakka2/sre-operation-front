@@ -46,6 +46,7 @@ module.exports = (env, { mode }) => {
                 limit: 8192, // base64URLにする画像の大きさ
                 fallback: require.resolve('responsive-loader'),
                 adapter: require('responsive-loader/sharp'),
+                // eslint-disable-next-line no-magic-numbers
                 sizes: [300, 600, 1080, 1920],
                 placeholder: true, // Progressive Imageで使う縮小画像を生成するかどうかのフラグ
                 placeholderSize: 50, // 縮小画像のサイズ
@@ -61,8 +62,8 @@ module.exports = (env, { mode }) => {
     resolve: {
       extensions: ['.ts', '.js', '.tsx', '.jsx', '.json'],
       alias: {
-        '@components': path.resolve(__dirname, 'src/components'),
-        '@lib': path.resolve(__dirname, 'src/lib'),
+        '@src': path.resolve(__dirname, './src'),
+        '@assets': path.resolve(__dirname, './src/assets'),
       },
     },
 
